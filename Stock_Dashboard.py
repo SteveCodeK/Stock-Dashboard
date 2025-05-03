@@ -24,7 +24,7 @@ if refresh_clicked or (now - st.session_state.last_refresh > REFRESH_INTERVAL):
 
 # --- GOOGLE SHEETS CONNECTION ---
 SCOPES = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-SERVICE_ACCOUNT_FILE = "D:/Dashboard projects/Stock Dashboard/Credentials.json"
+SERVICE_ACCOUNT_FILE = "Credentials.json"
 
 creds = Credentials.from_service_account_file(
     SERVICE_ACCOUNT_FILE, scopes=SCOPES)
