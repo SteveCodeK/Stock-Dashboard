@@ -16,6 +16,8 @@ from twilio.rest import Client
 
 #d202c30a899a4e1e9c731012e9b3987c
 
+NEWS_API_KEY = st.secrets["NEWS_API_KEY"]
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
 # --- GOOGLE SHEETS CONNECTION ---
 SCOPES = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
@@ -89,7 +91,6 @@ def ai_detect_sell_buy(df):
 sentiment_analyzer = pipeline("sentiment-analysis")
 
 # Replace with your News API key
-NEWS_API_KEY = "d202c30a899a4e1e9c731012e9b3987c"
 
 def ai_news_sentiment():
     st.subheader("📰 AI News Sentiment Analysis")
@@ -353,7 +354,7 @@ def interactive_filters(df):
 
 
 if __name__ == "__main__":
-    client = OpenAI(api_key="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")
+    client = OpenAI(OPENAI_API_KEY)
     # Fetch raw data
     df = pd.DataFrame(data)
 
