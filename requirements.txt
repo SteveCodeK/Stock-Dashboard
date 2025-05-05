@@ -35,6 +35,9 @@ urllib3==2.4.0
 click==8.1.8
 blinker==1.9.0
 tenacity==9.1.2
+transformers
+torch
+
 
 # For schema validation and handling
 jsonschema==4.23.0
