@@ -12,6 +12,7 @@ import numpy as np
 import time
 from openai import OpenAI
 from twilio.rest import Client
+from google.oauth2 import service_account
 
 
 #d202c30a899a4e1e9c731012e9b3987c
@@ -19,13 +20,13 @@ from twilio.rest import Client
 NEWS_API_KEY = st.secrets["NEWS_API_KEY"]
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
-# --- GOOGLE SHEETS CONNECTION ---
-SCOPES = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-SERVICE_ACCOUNT_FILE = "D:/Dashboard projects/Stock Dashboard/Credentials.json"
+SCOPES = ["https://www.googleapis.com/auth/spreadsheets", 
+          "https://www.googleapis.com/auth/drive"]
 
-creds_dict = st.secrets["gcp_service_account"]
-creds = Credentials.from_service_account_info(dict(creds_dict))
-
+creds = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"],
+    scopes=SCOPES
+)
 client = gspread.authorize(creds)
 # Open Spreadsheet and Worksheet
 spreadsheet = client.open("Finacial Dashboard")
