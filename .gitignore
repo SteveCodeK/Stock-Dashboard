@@ -3,6 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+.env
+.streamlit/secrets.toml
+Credentials.json
+
 # User-specific files
 *.rsuser
 *.suo
