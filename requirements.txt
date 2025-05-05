@@ -39,7 +39,7 @@ transformers
 torch
 scikit-learn
 openai
-
+twilio
 
 
 # For schema validation and handling
