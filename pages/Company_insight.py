@@ -26,6 +26,7 @@ SERVICE_ACCOUNT_FILE = "D:/Dashboard projects/Stock Dashboard/Credentials.json"
 creds_dict = st.secrets["gcp_service_account"]
 creds = Credentials.from_service_account_info(dict(creds_dict))
 
+client = gspread.authorize(creds)
 # Open Spreadsheet and Worksheet
 spreadsheet = client.open("Finacial Dashboard")
 worksheet = spreadsheet.worksheet("SNOW")
