@@ -197,9 +197,9 @@ def ai_chatbot():
 
         try:
             with st.spinner("🤖 Thinking..."):
-                response = client.chat.completions.create(
-                    model="gpt-3.5-turbo",
-                    messages=[{"role": "user", "content": prompt}]
+                response = openai.ChatCompletion.create(
+                        model="gpt-3.5-turbo",
+                        messages=[{"role": "user", "content": prompt}]
                 )
                 answer = response.choices[0].message.content
                 st.success("📡 AI Response:")
@@ -355,7 +355,9 @@ def interactive_filters(df):
 
 
 if __name__ == "__main__":
+    import openai
     openai.api_key = st.secrets["OPENAI_API_KEY"]
+
 
     # Fetch raw data
     df = pd.DataFrame(data)
