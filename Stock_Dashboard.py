@@ -26,9 +26,8 @@ if refresh_clicked or (now - st.session_state.last_refresh > REFRESH_INTERVAL):
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
 SERVICE_ACCOUNT_FILE = "Credentials.json"
 
-creds = Credentials.from_service_account_file(
-    SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-client = gspread.authorize(creds)
+creds_dict = st.secrets["gcp_service_account"]
+creds = Credentials.from_service_account_info(dict(creds_dict))
 
 # Open Spreadsheet and Worksheet
 spreadsheet = client.open("Finacial Dashboard")
