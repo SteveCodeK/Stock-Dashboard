@@ -3,6 +3,7 @@ import pandas as pd
 import gspread
 from google.oauth2.service_account import Credentials
 import time
+from google.oauth2 import service_account
 
 # --- CONFIG ---
 st.set_page_config(page_title="📈 Stock Dashboard", layout="wide")
@@ -23,11 +24,13 @@ if refresh_clicked or (now - st.session_state.last_refresh > REFRESH_INTERVAL):
     st.rerun()
 
 # --- GOOGLE SHEETS CONNECTION ---
-SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-SERVICE_ACCOUNT_FILE = "Credentials.json"
+SCOPES = ["https://www.googleapis.com/auth/spreadsheets", 
+          "https://www.googleapis.com/auth/drive"]
 
-creds_dict = st.secrets["gcp_service_account"]
-creds = Credentials.from_service_account_info(dict(creds_dict))
+creds = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"],
+    scopes=SCOPES
+)
 
 client = gspread.authorize(creds)
 # Open Spreadsheet and Worksheet
