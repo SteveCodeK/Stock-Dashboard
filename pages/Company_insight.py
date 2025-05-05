@@ -23,9 +23,8 @@ OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 SCOPES = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 SERVICE_ACCOUNT_FILE = "D:/Dashboard projects/Stock Dashboard/Credentials.json"
 
-creds = Credentials.from_service_account_file(
-    SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-client = gspread.authorize(creds)
+creds_dict = st.secrets["gcp_service_account"]
+creds = Credentials.from_service_account_info(dict(creds_dict))
 
 # Open Spreadsheet and Worksheet
 spreadsheet = client.open("Finacial Dashboard")
