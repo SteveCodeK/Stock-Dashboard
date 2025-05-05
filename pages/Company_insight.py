@@ -355,11 +355,12 @@ def interactive_filters(df):
 
 
 if __name__ == "__main__":
-    openai.api_key = OPENAI_API_KEY  # Set key globally
-    response = openai.ChatCompletion.create(
+    client = OpenAI(api_key=OPENAI_API_KEY)
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": "Hello!"}]
     )
+
     # Fetch raw data
     df = pd.DataFrame(data)
 
